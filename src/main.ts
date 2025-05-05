@@ -63,7 +63,9 @@ app.get('/movies',(req:Request,res:Response)=>{
     res.json(movies)
 })
 
-app.post('/movies/:id',(req:Request,res:Response)=>{
+app.put('/movies/:id',(req:Request,res:Response)=>{
+    // ? in url
+    // const productid=req.id
     const moviesId=parseInt(req.params.id)
     const {name,ticket,description}=req.body;
     const moviesIndex=movies.findIndex((m)=>m.id===moviesId)
