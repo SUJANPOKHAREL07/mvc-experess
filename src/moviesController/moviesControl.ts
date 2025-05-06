@@ -33,6 +33,7 @@ router.put('/movies/:id',(req:Request,res:Response)=>{
 
     }
     res.status(200).json(movies[moviesIndex])
+    
 })
 router.get('/moives/:id',(req:Request,res:Response)=>{
     
