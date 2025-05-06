@@ -1,7 +1,7 @@
 import movies from '../modal/movies'
 import express,{ Request,Response } from "express";
 const router=express()
-router.post('/movies',(req:Request,res:Response)=>{
+export function CreateMoviesPush(req:Request,res:Response){
     const{name,ticket,description}=req.body;
     const newMovies={
         id:movies.length+1,
@@ -11,12 +11,12 @@ router.post('/movies',(req:Request,res:Response)=>{
     }
     movies.push(newMovies);
     res.status(200).json(newMovies)
-})
-router.get('/movies',(req:Request,res:Response)=>{
+}
+export function MoviesGet(req:Request,res:Response){
     res.json(movies)
-})
+}
 
-router.put('/movies/:id',(req:Request,res:Response)=>{
+export function UpadteMoviesPut(req:Request,res:Response){
     // ? in url
     // const productid=req.id
     const moviesId=parseInt(req.params.id)
@@ -34,8 +34,8 @@ router.put('/movies/:id',(req:Request,res:Response)=>{
     }
     res.status(200).json(movies[moviesIndex])
     
-})
-router.get('/moives/:id',(req:Request,res:Response)=>{
+}
+export function MovieByID(req:Request,res:Response){
     
     const moviesId=parseInt(req.params.id)
     const movie=movies.find((m)=>m.id=moviesId)
@@ -44,8 +44,8 @@ router.get('/moives/:id',(req:Request,res:Response)=>{
     ]
     res.status(200).json(movie)
   
-})
-router.delete('/movies/:id',(req:Request,res:Response)=>{
+}
+export function DeleteMoviByID(req:Request,res:Response){
     const moviesId=parseInt(req.params.id)
     const movie=movies.find((m)=>m.id==moviesId)
     if(!movie){
@@ -53,4 +53,4 @@ router.delete('/movies/:id',(req:Request,res:Response)=>{
     }
     const Delmovie=movies.splice(moviesId,1)
     res.status(200).json(Delmovie)
-})
+}
