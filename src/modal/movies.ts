@@ -7,3 +7,14 @@ interface Movies {
 const movies: Movies[] = [];
 
 export default movies;
+
+export function createMvoies(input:Omit<Movies,"id">){
+  const newMovies={
+    id:movies.length+1,
+    name:input.name,
+    ticket:input.ticket,
+    description:input.description,
+}
+movies.push(newMovies);
+return newMovies
+}
