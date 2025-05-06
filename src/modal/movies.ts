@@ -1,3 +1,5 @@
+import { isFunctionDeclaration } from "typescript";
+
 interface Movies{
     id:number,
     name:String,
@@ -6,4 +8,6 @@ interface Movies{
 
 }
 const movies:Movies[]=[]
+
+
 export default movies;
