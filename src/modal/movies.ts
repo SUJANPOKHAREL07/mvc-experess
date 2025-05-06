@@ -1,13 +1,9 @@
-import { isFunctionDeclaration } from "typescript";
-
-interface Movies{
-    id:number,
-    name:String,
-    ticket:number,
-    description:string;
-
+interface Movies {
+  id: number;
+  name: String;
+  ticket: number;
+  description: string;
 }
-const movies:Movies[]=[]
-
+const movies: Movies[] = [];
 
 export default movies;
