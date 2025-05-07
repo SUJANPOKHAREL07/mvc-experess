@@ -28,6 +28,14 @@ export function UpdateMovies(input:Movies){
     description:input.description,
 
 }
-return UpdateMovies;
+return movies[moviesIndex];
   
 }
+
+export function DeleteMovies(id:number){
+  const moviesId=id
+  const movie=movies.find((m)=>m.id==moviesId)
+  const Delmovie=movies.splice(moviesId,1)
+
+}
+
