@@ -1,10 +1,15 @@
 import movies from '../modal/movies'
 import express,{ Request,Response } from "express";
-import { createMvoies } from '../modal/movies';
+import { createMvoies,UpdateMovies } from '../modal/movies';
 const router=express()
 export function CreateMoviesPush(req:Request,res:Response){
     const{name,ticket,description}=req.body;
     
+    const newMovies=createMvoies({
+        name:name,
+        ticket:ticket,
+        description:description,
+    })
     
     res.status(200).json(newMovies)
 }
@@ -14,21 +19,20 @@ export function MoviesGet(req:Request,res:Response){
 
 export function UpadteMoviesPut(req:Request,res:Response){
     // ? in url
-    // const productid=req.id
-    const moviesId=parseInt(req.params.id)
+    const productid=parseInt(req.params.id)
+    
     const {name,ticket,description}=req.body;
-    const moviesIndex=movies.findIndex((m)=>m.id===moviesId)
-    if(moviesIndex==-1){
-        res.status(404).json({error:"the request movie is not available"})
-    }
-    movies[moviesIndex]={
-        ...movies[moviesIndex],
-        name,
-        ticket,
-        description,
-
-    }
-    res.status(200).json(movies[moviesIndex])
+    const movies=UpdateMovies({
+        id:productid,
+        name:name,
+        ticket:ticket,
+        description:description,
+    })
+    // if(moviesIndex==-1){
+    //     res.status(404).json({error:"the request movie is not available"})
+    // }
+   
+    res.status(200).json(movies)
     
 }
 export function MovieByID(req:Request,res:Response){

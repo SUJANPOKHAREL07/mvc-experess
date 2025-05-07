@@ -18,3 +18,16 @@ export function createMvoies(input:Omit<Movies,"id">){
 movies.push(newMovies);
 return newMovies
 }
+export function UpdateMovies(input:Movies){
+  const moviesId=input.id
+  const moviesIndex=movies.findIndex((m)=>m.id===moviesId)
+  movies[moviesIndex]={
+    ...movies[moviesIndex],
+    name:input.name,
+    ticket:input.ticket,
+    description:input.description,
+
+}
+return UpdateMovies;
+  
+}

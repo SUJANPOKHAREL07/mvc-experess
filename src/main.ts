@@ -34,19 +34,14 @@
 
 import { error } from 'console'
 import express, {Request , Response} from 'express'
+import movierouter from './router/moviesrouter'
 const app=express()
 app.use(express.json())
+app.use(movierouter)
+
+
+
 const port=3000
-app.get('/',(req:Request,res:Response)=>{
-    res.send("server is just started")
-})
-interface Movies{
-    id:number,
-    name:string,
-    ticket:number,
-    description:string,
-}
-const movies:Movies[]=[]
 
 
 
