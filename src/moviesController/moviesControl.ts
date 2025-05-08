@@ -1,6 +1,6 @@
-import movies from '../modal/movies'
 import express,{ Request,Response } from "express";
-import { createMvoies,UpdateMovies,DeleteMovies } from '../modal/movies';
+import movies from "../modal/movies"
+import { createMvoies,UpdateMovies,DeleteMovies, getAllmovies } from '../modal/movies';
 const router=express()
 export function CreateMoviesPush(req:Request,res:Response){
     const{name,ticket,description}=req.body;
@@ -14,6 +14,8 @@ export function CreateMoviesPush(req:Request,res:Response){
     res.status(200).json(newMovies)
 }
 export function MoviesGet(req:Request,res:Response){
+    const movies=getAllmovies()
+    
     res.json(movies)
 }
 

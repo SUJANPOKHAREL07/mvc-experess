@@ -4,9 +4,9 @@ import { CreateMoviesPush, DeleteMoviByID, MovieByID, MoviesGet, UpadteMoviesPut
 const movierouter = express.Router();
 
 movierouter.post('/',CreateMoviesPush)
-movierouter.post('/',MoviesGet)
-movierouter.post('/:id',UpadteMoviesPut)
-movierouter.post('/:id',MovieByID)
-movierouter.post('/:id',DeleteMoviByID) 
+movierouter.get('/',MoviesGet)
+movierouter.put('/:id',UpadteMoviesPut)
+movierouter.get('/:id',MovieByID)
+movierouter.delete('/:id',DeleteMoviByID) 
 
 export default movierouter
