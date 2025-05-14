@@ -1,49 +1,24 @@
-// import express,{Request, Response} from 'express'
-// const app=express();
-// app.use(express.json())
-// app.get("/",(req:Request, res:Response )=>{
-//     res.send("Server just got started")
-// })
-// const PORT = 2000
 
-// interface Hotels{
-//     id:Number,
-//     name:string,
-//     description:string,
-// }
-// const hotel:Hotels[]=[]
-
-
-// app.post('/hotels',(req:Request,res:Response)=>{
-//     const{name,description}=req.body
-//     const newHOtels={
-//         id:hotel.length+1,
-//         name:name,
-//         description:description,
-//     }
-//     hotel.push(newHOtels);
-//     res.status(200).json(newHOtels)
-// })
-// app.get("/hotels",( req:Request,res:Response)=>{
-//     res.json(hotel)
-// })
-
-// app.listen(PORT ,()=>{
-//     console.log("working on port no:",PORT)
-// })
 
 import { error } from 'console'
-import express, {Request , Response} from 'express'
+import express, {NextFunction, Request , Response} from 'express'
 import movierouter from './router/moviesrouter'
 const app=express()
 app.use(express.json())
-app.use(movierouter)
-
-
-
+app.use("/",movierouter)
 const port=3000
 
 
+
+app.use((error:any, req: Request, res: Response, next: NextFunction)=>{
+    console.log("error", error);
+    if(error.status === 404 || error.status ===403 || error.ststus === 400){
+      res.status(error.status).json(error);
+    }
+    res.status(500).json({
+      message: "Internal server error"
+    })
+  })
 
 
 app.listen(port ,()=>{
